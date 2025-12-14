@@ -1,0 +1,330 @@
+:root {
+  --color-bg: #1a1a1a;
+  --color-surface: #2a2a2a;
+  --color-surface-hover: #3a3a3a;
+  --color-primary: #4ade80;
+  --color-secondary: #60a5fa;
+  --color-text: #ffffff;
+  --color-text-muted: #a1a1aa;
+  
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 2rem;
+  
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+/* Basic reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.5;
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-md) var(--spacing-lg);
+  background: rgba(42, 42, 42, 0.8);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+.nav-brand {
+  font-weight: 700;
+  font-size: 1.25rem;
+  background: linear-gradient(to right, var(--color-primary), var(--color-secondary));
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.nav-links {
+  display: flex;
+  gap: var(--spacing-lg);
+}
+
+.nav-link {
+  font-weight: 500;
+  color: var(--color-text-muted);
+  transition: color 0.2s;
+  padding: 0.5rem;
+  border-radius: var(--radius-sm);
+}
+
+.nav-link:hover, .nav-link.active {
+  color: var(--color-text);
+  background: rgba(255,255,255,0.05);
+}
+
+
+/* Helper for main content helper to avoid being hidden by navbar */
+.page-content {
+  padding-top: 80px; /* Navbar height + extra */
+  min-height: 100vh;
+}
+
+
+/* Premium UI Panel Base Styles */
+/* Premium UI Panel Base Styles */
+.bim-panel-base {
+  position: fixed !important;
+  top: 100px;
+  width: 350px !important;
+  max-height: calc(100vh - 120px) !important;
+  background: rgba(30, 30, 30, 0.65) !important;
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.125);
+  border-radius: var(--radius-md) !important;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  z-index: 900;
+  overflow-y: auto;
+  transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1), opacity 0.3s ease;
+  
+  /* Spacing fix for scrollbar */
+  padding-right: 4px; 
+}
+
+/* Left Panel - Object Explorer */
+.explorer-panel {
+  left: 20px;
+}
+
+/* Right Panel - Properties */
+.properties-panel {
+  right: 20px;
+}
+
+/* Ensure text is visible in panels */
+bim-panel-section {
+  color: var(--color-text);
+  margin-bottom: 0.5rem; /* Add spacing between sections */
+}
+
+/* Custom spacing for inner content to avoid scrollbar touch */
+bim-panel-section > div {
+  padding-right: 6px;
+}
+
+bim-label {
+  color: var(--color-text-muted);
+  font-family: var(--font-sans); /* Enforce clean font */
+  letter-spacing: 0.01em;
+}
+
+/* Custom Scrollbar for panels */
+.bim-panel-base::-webkit-scrollbar {
+  width: 8px; /* Slightly wider for better usability */
+}
+
+.bim-panel-base::-webkit-scrollbar-track {
+  background: transparent; /* Cleaner look */
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+.bim-panel-base::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  border: 2px solid rgba(30, 30, 30, 0.65); /* Creates padding effect visually */
+  background-clip: content-box;
+}
+
+.bim-panel-base::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border: 2px solid rgba(30, 30, 30, 0.65);
+  background-clip: content-box;
+}
+
+/* Hide panel helper */
+.panel-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+.explorer-panel.panel-hidden {
+  transform: translateX(-120%);
+}
+.properties-panel.panel-hidden {
+  transform: translateX(120%);
+}
+
+/* Context Menu */
+.context-menu {
+  position: absolute;
+  background: rgba(42, 42, 42, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-lg);
+  padding: 4px;
+  min-width: 150px;
+  z-index: 2000;
+  display: none;
+  font-family: var(--font-sans);
+}
+
+.context-menu-item {
+  padding: 8px 12px;
+  color: var(--color-text);
+  cursor: pointer;
+  border-radius: 2px;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.2s;
+}
+
+.context-menu-item:hover {
+  background: var(--color-surface-hover);
+  color: var(--color-primary);
+}
+
+.context-menu-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 4px 0;
+}
+
+/* Spatial Tree Styles */
+.tree-container {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  color: var(--color-text);
+  margin-top: 10px;
+}
+
+.tree-item {
+  cursor: pointer;
+  padding: 4px 0;
+  border-radius: 4px;
+}
+
+/* Remove default summary marker */
+summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 6px 0;
+  display: flex;
+  align-items: center;
+  transition: color 0.2s;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+summary:hover {
+  color: var(--color-primary);
+}
+
+summary::before {
+  content: '▶';
+  font-size: 0.6em;
+  margin-right: 8px;
+  transition: transform 0.2s;
+  color: var(--color-text-muted);
+}
+
+details[open] > summary::before {
+  transform: rotate(90deg);
+}
+
+.tree-leaf {
+  padding-left: 20px;
+  padding: 6px 0 6px 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--color-text-muted);
+  transition: all 0.2s;
+}
+
+.tree-leaf:hover {
+  color: var(--color-text);
+  background: rgba(255,255,255,0.05);
+  border-radius: 4px;
+}
+
+/* Indentation levels */
+details > div, details > details {
+  margin-left: 12px;
+  border-left: 1px solid rgba(255,255,255,0.05);
+  padding-left: 8px;
+}
+
+/* Tab toggle */
+.tab-group {
+    display: flex;
+    margin-bottom: 12px;
+    background: rgba(0,0,0,0.2);
+    padding: 4px;
+    border-radius: var(--radius-sm);
+}
+
+.tab-btn {
+    flex: 1;
+    text-align: center;
+    padding: 6px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    border-radius: var(--radius-sm);
+    color: var(--color-text-muted);
+    transition: all 0.2s;
+}
+
+.tab-btn.active {
+    background: var(--color-surface);
+    color: var(--color-text);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    font-weight: 500;
+}
+
+/* BUIC Table Styles (Spatial Tree) */
+bim-table-row:hover, bim-row:hover {
+  background-color: var(--color-surface-hover) !important;
+}
+
+/* Active/Selected Row Styles */
+bim-table-row[active], bim-table-row[selected], bim-table-row[highlighted],
+bim-row[active], bim-row[selected],
+div[active], div[selected] {
+  background-color: rgba(100, 255, 218, 0.15) !important;
+  border-left: 3px solid var(--color-primary);
+}
+
+/* Ensure icons/labels also show selection */
+bim-label[checked], bim-label[active], bim-label[selected] {
+    background-color: rgba(100, 255, 218, 0.15) !important;
+    border-radius: 4px;
+    color: var(--color-primary) !important;
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BIM Manager - Analysis</title>
+    <style>
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px 20px;
+      }
+      .header {
+        margin-bottom: 40px;
+      }
+      .header h1 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+        color: var(--color-primary);
+      }
+      .dashboard-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 20px;
+      }
+      .stat-card {
+        background: var(--color-surface);
+        border: 1px solid rgba(255,255,255,0.05);
+        border-radius: var(--radius-md);
+        padding: 20px;
+      }
+      .stat-card h3 {
+        margin-bottom: 15px;
+        font-size: 1.1rem;
+        color: var(--color-text-muted);
+      }
+      .placeholder-chart {
+        width: 100%;
+        height: 200px;
+        background: linear-gradient(to right, #2a2a2a, #333);
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #555;
+        font-size: 0.9rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page-content">
+      <div class="container">
+        <header class="header">
+          <h1>Project Analytics</h1>
+          <p style="color: var(--color-text-muted)">Overview of model statistics and resource usage.</p>
+        </header>
+
+        <div class="dashboard-grid">
+          <div class="stat-card">
+            <h3>Model Distribution</h3>
+            <div class="placeholder-chart">Pie Chart Placeholder</div>
+          </div>
+          <div class="stat-card">
+            <h3>Element Count History</h3>
+            <div class="placeholder-chart">Bar Chart Placeholder</div>
+          </div>
+          <div class="stat-card">
+            <h3>File Size Usage</h3>
+            <div class="placeholder-chart">Line Chart Placeholder</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="/src/analysis.js"></script>
+  </body>
+</html>

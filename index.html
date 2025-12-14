@@ -1,85 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-R" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- index.html: place inside <head> -->
-    
-
-    <title>My BIM Viewer</title>
+    <title>BIM Manager - Home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
     <style>
-      /* Basic reset */
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-      /* Make the app full-screen */
-      html,
-      body {
-        width: 100vw;
+      .hero {
         height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+        background: radial-gradient(circle at top right, #333333 0%, var(--color-bg) 60%);
+        padding: 0 20px;
+        position: relative;
         overflow: hidden;
       }
-      /* This is the 3D canvas container */
-      #container {
-        width: 100%;
-        height: 100%;
-        position: relative;
+      
+      .hero-title {
+        font-size: 4rem;
+        font-weight: 800;
+        margin-bottom: 1rem;
+        background: linear-gradient(135deg, #ffffff 0%, #a1a1aa 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        z-index: 1;
       }
-      /* UI Styling from the tutorial */
-      .options-menu {
+      
+      .hero-subtitle {
+        font-size: 1.25rem;
+        color: var(--color-text-muted);
+        max-width: 600px;
+        margin-bottom: 3rem;
+        z-index: 1;
+      }
+      
+      .cards {
+        display: flex;
+        gap: 2rem;
+        z-index: 1;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      .card {
+        background: rgba(42, 42, 42, 0.4);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: var(--radius-lg);
+        padding: 2rem;
+        width: 300px;
+        transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+        cursor: pointer;
+        backdrop-filter: blur(10px);
+        text-align: left;
+      }
+      
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        background: rgba(42, 42, 42, 0.6);
+        border-color: var(--color-primary);
+      }
+      
+      .card h3 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+        color: var(--color-primary);
+      }
+      
+      .card p {
+        color: var(--color-text-muted);
+      }
+
+      /* Animated background blob */
+      .blob {
         position: absolute;
-        top: 2rem;
-        left: 2rem;
-        z-index: 100;
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(circle, rgba(74, 222, 128, 0.1) 0%, rgba(0,0,0,0) 70%);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        animation: pulse 10s infinite alternate;
+        z-index: 0;
+        pointer-events: none;
       }
-      .phone-menu-toggler {
-        position: absolute;
-        bottom: 2rem;
-        right: 2rem;
-        z-index: 100;
-        display: none;
-      }
-      @media (max-width: 600px) {
-        .options-menu {
-          display: none;
-        }
-        .options-menu-visible {
-          display: block;
-        }
-        .phone-menu-toggler {
-          display: block;
-        }
-        /* ... (inside your existing <style> tag) ... */
-
-        #file-input {
-          display: none; /* Hide the default ugly input */
-        }
-
-        #file-label {
-          position: absolute;
-          top: 15px;
-          left: 15px;
-          z-index: 100;
-          background: #333;
-          color: white;
-          padding: 10px 15px;
-          border-radius: 5px;
-          cursor: pointer;
-          font-family: sans-serif;
-          font-size: 14px;
-        }
-
-        #file-label:hover {
-          background: #555;
-        }
+      
+      @keyframes pulse {
+        0% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+        100% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.8; }
       }
     </style>
   </head>
-    <body>
-      <div id="container"></div>
-      <script type="module" src="/src/main.js"></script>
-    </body>
+  <body>
+    <div class="blob"></div>
+    <main class="hero">
+      <h1 class="hero-title">BIM Project Manager</h1>
+      <p class="hero-subtitle">Visualise complex IFC models and analyze data with our state-of-the-art WebGPU viewer and powerful backend.</p>
+      
+      <div class="cards">
+        <a href="/viewer.html" class="card">
+          <h3>Interactive Viewer &rarr;</h3>
+          <p>Explore 3D models with high performance rendering and element property inspection.</p>
+        </a>
+        <a href="/analysis.html" class="card">
+          <h3>Data Analysis &rarr;</h3>
+          <p>Gain insights from your BIM data with interactive charts and reports.</p>
+        </a>
+      </div>
+    </main>
+    <script type="module" src="/src/home.js"></script>
+  </body>
 </html>

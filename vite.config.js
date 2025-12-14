@@ -1,4 +1,5 @@
 // vite.config.js
+import { resolve } from "path";
 import { defineConfig } from "vite";
 
 export default defineConfig({
@@ -12,6 +13,13 @@ export default defineConfig({
   },
   build: {
     outDir: 'dist',
-    sourcemap: true
+    sourcemap: true,
+    rollupOptions: {
+      input: {
+        main: resolve(__dirname, 'index.html'),
+        viewer: resolve(__dirname, 'viewer.html'),
+        analysis: resolve(__dirname, 'analysis.html'),
+      },
+    },
   }
 });
