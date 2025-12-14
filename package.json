@@ -1,0 +1,31 @@
+{
+  "name": "my-bim-viewer",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "main": "dist-electron/main.js",
+  "scripts": {
+    "dev": "concurrently \"npm run backend\" \"npm run frontend\"",
+    "frontend": "vite",
+    "backend": "source backend/venv/bin/activate && python3 backend/main.py",
+    "build": "vite build && electron-builder",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "electron": "^39.2.7",
+    "electron-builder": "^26.0.12",
+    "electron-squirrel-startup": "^1.0.1",
+    "vite": "^7.1.7",
+    "vite-plugin-electron": "^0.29.0",
+    "wait-on": "^9.0.3"
+  },
+  "dependencies": {
+    "@thatopen/components": "^3.2.2",
+    "@thatopen/fragments": "^3.2.0",
+    "@thatopen/ui": "^3.2.0",
+    "stats.js": "^0.17.0",
+    "three": "^0.181.0",
+    "web-ifc": "^0.0.72"
+  }
+}
