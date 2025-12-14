@@ -1,6 +1,6 @@
 # My BIM Viewer
 
-A Building Information Modeling (BIM) IFC viewer application built with Electron, Three.js, and FastAPI. Upload, visualize, and interact with IFC (Industry Foundation Classes) models in 3D.
+A Building Information Modeling (BIM) IFC viewer web application built with Vite, Three.js, and FastAPI. Upload, visualize, and interact with IFC (Industry Foundation Classes) models in 3D.
 
 ## Features
 
@@ -9,13 +9,12 @@ A Building Information Modeling (BIM) IFC viewer application built with Electron
 - **Element Selection**: Click on elements to view detailed properties and property sets
 - **Multiple Models**: Load and manage multiple IFC models simultaneously
 - **Property Inspection**: View element properties, property sets (Psets), and quantities
-- **Desktop Application**: Built with Electron for cross-platform desktop deployment
+- **Web Application**: Modern web application accessible from any browser
 
 ## Tech Stack
 
 ### Frontend
-- **Electron**: Desktop application framework
-- **Vite**: Build tool and dev server
+- **Vite**: Lightning-fast build tool and dev server
 - **Three.js**: 3D rendering engine
 - **@thatopen/components**: BIM-specific 3D components
 - **@thatopen/ui**: UI components for BIM applications
@@ -64,7 +63,7 @@ npm run dev
 ```
 
 This will start:
-- Frontend (Vite + Electron): `http://localhost:5173/`
+- Frontend (Vite): `http://localhost:5173/` (opens automatically in your browser)
 - Backend (FastAPI): `http://localhost:8000`
 
 ### Individual Services
@@ -115,12 +114,9 @@ my-bim-viewer/
 │   ├── main.py              # FastAPI application
 │   ├── requirements.txt     # Python dependencies
 │   └── venv/               # Python virtual environment
-├── electron/
-│   ├── main.js             # Electron main process
-│   └── preload.js          # Electron preload script
 ├── src/
 │   └── main.js             # Frontend application code
-├── public/                 # Static assets
+├── public/                 # Static assets (WASM files, worker.mjs)
 ├── index.html              # HTML entry point
 ├── package.json            # Node.js dependencies
 └── vite.config.js          # Vite configuration
